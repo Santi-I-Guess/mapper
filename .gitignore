@@ -1,0 +1,6 @@
+*.kra
+*.odt
+*.odt\#
+*.txt
+bin/*
+raylib.h
