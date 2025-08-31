@@ -1,6 +1,8 @@
 #ifndef VISUALIZATION_H
 #define VISUALIZATION_H
 
-void main_loop();
+#include "database.h"
+
+void main_loop(struct db_settings *alpha);
 
 #endif

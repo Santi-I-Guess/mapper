@@ -1,0 +1,28 @@
+-- I guess "ON CONFLICT ROLLBACK" is redundant
+-- but why is this 
+
+CREATE TABLE IF NOT EXISTS nodes (
+    id INTEGER PRIMARY KEY,
+    name TEXT DEFAULT "",
+    color INTEGER NOT NULL CHECK (color BETWEEN 0 AND 25) DEFAULT 22, -- black
+    floor INTEGER NOT NULL CHECK (floor BETWEEN 0 AND 255),
+    x INTEGER NOT NULL CHECK (x BETWEEN -32768 AND 32767),
+    y INTEGER NOT NULL CHECK (y BETWEEN -32768 AND 32767),
+    z INTEGER NOT NULL CHECK (z BETWEEN -32768 AND 32767),
+    UNIQUE (x, y, z)
+);
+
+CREATE TABLE IF NOT EXISTS edges (
+    id INTEGER PRIMARY KEY,
+    name TEXT DEFAULT "",
+    color INTEGER NOT NULL CHECK (color BETWEEN 0 AND 25) DEFAULT 1, -- gray
+    floor INTEGER NOT NULL CHECK (floor BETWEEN 0 AND 255),
+    parent_x INTEGER NOT NULL CHECK (parent_x BETWEEN -32768 AND 32767),
+    parent_y INTEGER NOT NULL CHECK (parent_y BETWEEN -32768 AND 32767),
+    parent_z INTEGER NOT NULL CHECK (parent_z BETWEEN -32768 AND 32767),
+    child_x  INTEGER NOT NULL CHECK (child_x  BETWEEN -32768 AND 32767),
+    child_y  INTEGER NOT NULL CHECK (child_y  BETWEEN -32768 AND 32767),
+    child_z  INTEGER NOT NULL CHECK (child_z  BETWEEN -32768 AND 32767),
+    UNIQUE (parent_x, parent_y, parent_z),
+    UNIQUE (child_x, child_y, child_z)
+);
